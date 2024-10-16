@@ -138,3 +138,30 @@ object SdkRemoteConfigController {
         }
     }
 }
+
+fun  main(){
+    val results = calculatePayments(19221.0,6990.0,28250.0)
+    println(results)
+}
+fun calculatePayments(x: Double, y: Double, z: Double): Map<String, Map<String, Double>> {
+    // Calculate the amount each person spent on others
+    val aliSpentOnOthers = x - (x / 3)
+    val basitSpentOnOthers = y - (y / 3)
+    val ishfaqSpentOnOthers = z - (z / 3)
+
+    // Calculate total amount spent on others and the share each person should pay
+    val totalSpentOnOthers = aliSpentOnOthers + basitSpentOnOthers + ishfaqSpentOnOthers
+    val eachPersonShare = totalSpentOnOthers / 3
+
+    // Calculate how much each person owes or is owed
+    val aliOwes = eachPersonShare - aliSpentOnOthers
+    val basitOwes = eachPersonShare - basitSpentOnOthers
+    val ishfaqOwes = eachPersonShare - ishfaqSpentOnOthers
+
+    // Return the amount each person owes the others
+    return mapOf(
+        "Ali" to mapOf("Basit" to -aliOwes / 2, "Ishfaq" to -aliOwes / 2),
+        "Basit" to mapOf("Ali" to -basitOwes / 2, "Ishfaq" to -basitOwes / 2),
+        "Ishfaq" to mapOf("Ali" to -ishfaqOwes / 2, "Basit" to -ishfaqOwes / 2)
+    )
+}
