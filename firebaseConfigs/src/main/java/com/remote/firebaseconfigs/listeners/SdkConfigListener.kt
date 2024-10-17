@@ -1,9 +1,7 @@
-package com.remote.firebaseconfigs
+package com.remote.firebaseconfigs.listeners
 
 interface SdkConfigListener {
     fun onSuccess()
-    fun onUpdate()
     fun onFailure(error: String)
     fun onDismiss()
-
 }
